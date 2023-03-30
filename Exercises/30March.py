@@ -1,14 +1,31 @@
+import numpy as np
+import matplotlib.pyplot as plt
 ###From array to grayscale image
-
 #• Use numpy (for example, the repeat function) to create a 5x5 pixel array
 #with 0s and 1s. For example you can try to create black and white stripes,
 #or a checkerboard pattern. Set the middle pixel to 0.5
 
+# Create a 5x5 array of 0s and 1s
+arr = np.array([[1, 0, 1, 0, 1],
+                [0, 1, 0, 1, 0],
+                [1, 0, 1, 0, 1],
+                [0, 1, 0, 1, 0],
+                [1, 0, 1, 0, 1]], dtype="float")
+
+# Set the middle pixel to 0.5
+arr[2, 2] = 0.5
+#print(arr)
+
 #• Multiple the entire image by 255 and store this in another variable. Check
 #that the dimensions of the image stay the same.
+arr_copy = np.copy(arr) * 255
+print(arr_copy)
 
 #• Display both images with matplotlib, What do you see? What do you
 #need to do, to make the images appear black and white?
+
+plt.imshow(arr, cmap='gray', interpolation='nearest')
+plt.show()
 
 ###Color image
 
