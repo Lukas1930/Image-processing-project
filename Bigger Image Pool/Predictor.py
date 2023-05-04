@@ -27,22 +27,19 @@ precisions = []
 recalls = []
 f1_scores = []
 
-# Perform stratified k-fold cross-validation
-for train_index, test_index in skf.split(X, y):
-    X_train, X_test = X[train_index], X[test_index]
-    y_train, y_test = y[train_index], y[test_index]
+# Load the model from the file
+with open('logistic_regression_model.pkl', 'rb') as f:
+    loaded_model = pickle.load(f)
 
-    # Train the logistic regression model
-    # Initialize the logistic regression model with a higher max_iter and different solver
-    model = LogisticRegression(max_iter=1000, solver='liblinear')
-    model.fit(X_train, y_train)
+# Use the loaded model for predictions
+y_pred = loaded_model.predict(X)
 
-    # Evaluate the model on the testing set
-    y_pred = model.predict(X_test)
-    accuracies.append(accuracy_score(y_test, y_pred))
-    precisions.append(precision_score(y_test, y_pred, average='weighted'))
-    recalls.append(recall_score(y_test, y_pred, average='weighted'))
-    f1_scores.append(f1_score(y_test, y_pred, average='weighted'))
+# Evaluate the model on the testing set
+y_pred = loaded_model.predict(X)
+accuracies.append(accuracy_score(y, y_pred))
+precisions.append(precision_score(y, y_pred, average='weighted'))
+recalls.append(recall_score(y, y_pred, average='weighted'))
+f1_scores.append(f1_score(y, y_pred, average='weighted'))
 
 # Calculate the average performance metrics
 avg_accuracy = np.mean(accuracies)
@@ -54,6 +51,3 @@ print("Average accuracy: ", avg_accuracy)
 print("Average precision: ", avg_precision)
 print("Average recall: ", avg_recall)
 print("Average F1 score: ", avg_f1_score)
-
-with open('logistic_regression_model.pkl', 'wb') as f:
-    pickle.dump(model, f)

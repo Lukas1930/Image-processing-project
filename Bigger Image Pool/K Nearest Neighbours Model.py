@@ -1,10 +1,9 @@
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import StratifiedKFold
-from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.preprocessing import StandardScaler
-import pickle
 
 # Read your data from the CSV file
 data = pd.read_csv('output.csv')
@@ -32,9 +31,8 @@ for train_index, test_index in skf.split(X, y):
     X_train, X_test = X[train_index], X[test_index]
     y_train, y_test = y[train_index], y[test_index]
 
-    # Train the logistic regression model
-    # Initialize the logistic regression model with a higher max_iter and different solver
-    model = LogisticRegression(max_iter=1000, solver='liblinear')
+    # Train the KNN model
+    model = KNeighborsClassifier(n_neighbors=5)
     model.fit(X_train, y_train)
 
     # Evaluate the model on the testing set
@@ -54,6 +52,3 @@ print("Average accuracy: ", avg_accuracy)
 print("Average precision: ", avg_precision)
 print("Average recall: ", avg_recall)
 print("Average F1 score: ", avg_f1_score)
-
-with open('logistic_regression_model.pkl', 'wb') as f:
-    pickle.dump(model, f)
