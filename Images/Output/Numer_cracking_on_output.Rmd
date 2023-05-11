@@ -15,28 +15,32 @@ SEK<-subset(output, Label == "SEK")
 
 Symmetry:
 ```{r}
-mean(MEL$Symmetry)
-sd(MEL$Symmetry)
+Sym_MLE<-(MEL$Symmetry)
+NEV_mean_sym<-mean(MEL$Symmetry)
+NEV_sd_sym<-sd(MEL$Symmetry)
 ```
 
 ```{r}
-NEV_mean<-mean(NEV$Symmetry)
-NEV_sd<-sd(NEV$Symmetry)
-print(NEV_mean)
-print(NEV_sd)
-```
+Sym_nev<-(NEV$Symmetry)
+NEV_mean_sym<-mean(NEV$Symmetry)
+NEV_sd_sym<-sd(NEV$Symmetry)
 
-
-```{r}
-SEK_mean<-mean(SEK$Symmetry)
-SEK_sd<-sd(SEK$Symmetry)
-print(SEK_mean)
-print(SEK_sd)
 ```
 
 
 ```{r}
-t.test(NEV$Symmetry,SEK$Symmetry)
+Sym_sek<-(SEK$Symmetry)
+SEK_mean_sym<-mean(SEK$Symmetry)
+SEK_sd_sym<-sd(SEK$Symmetry)
+
+
+```
+
+
+```{r}
+t.test(Sym_MLE,Sym_nev)
+t.test(Sym_sek,Sym_nev)
+t.test(Sym_sek,Sym_MLE)
 ```
 
 
@@ -141,18 +145,42 @@ mean(SEK$SDGreen)
 mean(MEL$SDGreen)
 ```
 
+```{r}
+#Green t.test
+t.test(Green_SEK,Green_MEL)
+t.test(Green_SEK, Green_NEV)
+t.test(Green_NEV,Green_MEL)
+
+#Blue t.test
+t.test(Blue_SEK,Blue_MEL)
+t.test(Blue_SEK, Blue_NEV)
+t.test(Blue_NEV,Blue_MEL)
+
+#Red t.test
+
+t.test(Red_SEK,Red_MEL)
+t.test(Red_SEK, Red_NEV)
+t.test(Red_NEV,Red_MEL)
+```
+
+
+
+
 Compactness
 
 
 ```{r}
+Mel_compac<-MEL$Compactness
 MEL_mean_compac<-mean(MEL$Compactness)
 sd_MEL_Compac<-sd(MEL$Compactness)
 print(MEL_mean_compac)
 print(sd_MEL_Compac)
+
 ```
 
 
 ```{r}
+NEV_compac<-NEV$Compactness
 NEV_mean_compac<-mean(NEV$Compactness)
 sd_NEV_Compac<-sd(NEV$Compactness)
 print(NEV_mean_compac)
@@ -160,9 +188,20 @@ print(sd_NEV_Compac)
 ```
 
 ```{r}
+SEK_compac<-SEK$Compactness
 SEK_mean_compac<-mean(SEK$Compactness)
 sd_SEK_Compac<-sd(SEK$Compactness)
 print(SEK_mean_compac)
 print(sd_SEK_Compac)
+```
+
+```{r}
+t.test(NEV_compac,SEK_compac)
+t.test(NEV_compac,Mel_compac)
+t.test(Mel_compac,SEK_compac)
+```
+
+
+```{r}
 ```
 
