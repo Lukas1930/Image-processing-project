@@ -1,0 +1,117 @@
+---
+title: "Things_from_metadata"
+output: html_document
+date: "2023-05-12"
+---
+
+##MEL data
+
+```{r}
+MEL<-subset(metadata,diagnostic == "MEL")
+MEL_itch<-subset(MEL, itch == "True")
+
+MEL_age<-MEL$age
+
+Percent_itching_MEL<-length(MEL_itch$itch)/length(MEL$smoke)
+
+MEL_bleed<-subset(MEL, bleed =="True")
+
+Percent_bleedning_MEL<-length(MEL_bleed$bleed)/length(MEL$smoke)
+
+MEL_hurt<-subset(MEL, hurt == "True")
+Percent_hurting_MEL<-length(MEL_hurt$hurt)/length(MEL$smoke)
+
+print(Percent_itching_MEL)
+print(Percent_bleedning_MEL)
+print(Percent_hurting_MEL)
+```
+
+
+##SEK
+
+```{r}
+SEK<-subset(metadata,diagnostic == "SEK")
+
+SEK_age<-SEK$age
+
+SEK_itch<-subset(SEK, itch == "True")
+Percent_itching_SEK<-length(SEK_itch$itch)/length(SEK$smoke)
+
+SEK_bleed<-subset(SEK, bleed =="True")
+
+Percent_bleedning_SEK<-length(SEK_bleed$bleed)/length(SEK$smoke)
+
+SEK_hurt<-subset(SEK, hurt == "True")
+
+Percent_hurting_SEK<-length(SEK_hurt$hurt)/length(SEK$smoke)
+
+print(Percent_itching_SEK)
+print(Percent_bleedning_SEK)
+print(Percent_hurting_SEK)
+```
+
+
+
+##BCC
+
+```{r}
+BCC<-subset(metadata,diagnostic == "BCC")
+
+
+BCC_age<-BCC$age
+
+BCC_itch<-subset(BCC, itch == "True")
+Percent_itching_SEK<-length(BCC_itch$itch)/length(BCC$smoke)
+
+BCC_bleed<-subset(BCC, bleed =="True")
+
+Percent_bleedning_BCC<-length(BCC_bleed$bleed)/length(BCC$smoke)
+
+BCC_hurt<-subset(BCC, hurt == "True")
+
+Percent_hurting_BCC<-length(BCC_hurt$hurt)/length(BCC$smoke)
+
+print(Percent_itching_SEK)
+print(Percent_bleedning_SEK)
+print(Percent_hurting_SEK)
+```
+
+
+
+##NEV
+
+```{r}
+NEV<-subset(metadata,diagnostic == "NEV")
+
+NEV_age<-NEV$age
+
+
+NEV_itch<-subset(NEV, itch == "True")
+Percent_itching_NEV<-length(NEV_itch$itch)/length(NEV$smoke)
+
+NEV_bleed<-subset(NEV, bleed =="True")
+
+Percent_bleedning_NEV<-length(NEV_bleed$bleed)/length(NEV$smoke)
+
+NEV_hurt<-subset(NEV, hurt == "True")
+
+Percent_hurting_NEV<-length(NEV_hurt$hurt)/length(NEV$smoke)
+
+print(Percent_itching_NEV)
+print(Percent_bleedning_NEV)
+print(Percent_hurting_NEV)
+```
+
+
+
+```{r}
+t.test(NEV_age,MEL_age)
+t.test(NEV_age,BCC_age)
+t.test(NEV_age,SEK_age)
+
+t.test(MEL_age,BCC_age)
+t.test(MEL_age,SEK_age)
+
+t.test(BCC_age,SEK_age)
+```
+
