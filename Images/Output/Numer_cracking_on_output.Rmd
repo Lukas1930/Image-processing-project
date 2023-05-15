@@ -201,7 +201,51 @@ t.test(NEV_compac,Mel_compac)
 t.test(Mel_compac,SEK_compac)
 ```
 
+##Elgonation
 
 ```{r}
+MEL_elg<-MEL$Elongation
+NEV_elg<-NEV$Elongation
+SEK_elg<-SEK$Elongation
 ```
+
+
+```{r}
+t.test(MEL_elg,NEV_elg)
+t.test(MEL_elg,SEK_elg)
+t.test(NEV_elg,SEK_elg)
+```
+
+## Roundness
+
+```{r}
+MEL_round<-MEL$Roundness
+SEK_round<-SEK$Roundness
+NEV_round<-NEV$Roundness
+```
+
+```{r}
+t.test(MEL_round,SEK_round)
+t.test(MEL_round,NEV_round)
+t.test(SEK_round,NEV_round)
+```
+
+
+##Sharpness
+
+```{r}
+MEL_sharp<-MEL$Sharpness
+NEV_sharp<-NEV$Sharpness
+SEK_sharp<-SEK$Sharpness
+```
+
+
+```{r}
+t.test(MEL_sharp, NEV_sharp)
+t.test(MEL_sharp, SEK_sharp)
+t.test(NEV_sharp, SEK_sharp)
+```
+
+
+
 
