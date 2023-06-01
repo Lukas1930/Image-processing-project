@@ -16,15 +16,17 @@ extra_data['filename_no_ext'] = extra_data['img_id'].str.replace('.png', '')
 
 merged_data = pd.merge(data, extra_data, on='filename_no_ext')
 
-for col in ['grew']: 
+for col in ['grew', 'changed', 'elevation']: 
     merged_data[col] = merged_data[col].map({'True': 1, 'False': 0})
+
+for col in ['Label']: 
+    merged_data[col] = merged_data[col].map({'MEL': 1, 'NEV': 0})
 
 # Drop rows which contain NaN values
 merged_data = merged_data.dropna()
 
 # Separate the features (X) and the labels (y)
-X = merged_data.loc[:, ['Symmetry', 'MeanBlue', 'MeanGreen', 'MeanRed', 'SDBlue', 'SDGreen', 'SDRed', 'Compactness',
-    'Elongation', 'Roundness' , 'Sharpness', 'age', 'grew']].values
+X = merged_data.loc[:, ['MeanGreen', 'MeanRed', 'SDGreen', 'SDRed', 'Compactness', 'Roundness', 'age', 'elevation']].values
 y = merged_data.loc[:, ['Label']].values  # Label column
 
 # Scale the features
@@ -69,5 +71,5 @@ print("Average precision: ", avg_precision)
 print("Average recall: ", avg_recall)
 print("Average F1 score: ", avg_f1_score)
 
-with open('logistic_regression_model.pkl', 'wb') as f:
+with open('logistic_regression_model++.pkl', 'wb') as f:
     pickle.dump(model, f)

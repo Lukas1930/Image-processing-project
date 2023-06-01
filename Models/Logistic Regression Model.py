@@ -7,10 +7,10 @@ from sklearn.preprocessing import StandardScaler
 import pickle
 
 # Read your data from the CSV file
-data = pd.read_csv('output.csv')
+data = pd.read_csv('output MEL, NEV.csv')
 
 # Separate the features (X) and the labels (y)
-X = data.iloc[:, 1:-1].values  # Skip the first column (filename) and the last column (label)
+X = data.loc[:, ['MeanGreen', 'MeanRed', 'SDGreen', 'SDRed', 'Compactness', 'Roundness',]].values
 y = data.iloc[:, -1].values  # Label column
 
 # Scale the features

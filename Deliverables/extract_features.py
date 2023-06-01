@@ -16,16 +16,16 @@ def get_feature_values(original_image, segmented_image):
 
     contour = find_contours(grayscale_segmented_image)
 
-    symmetry_score = calculate_symmetry(grayscale_segmented_image, contour)
+    #symmetry_score = calculate_symmetry(grayscale_segmented_image, contour) //Axed after chi tests
     mean_blue, mean_green, mean_red, std_dev_blue, std_dev_green, std_dev_red = color_contrast_and_variety(segmented_image, contour)
     compactness_value = compactness(contour)
-    elongation_value = elongation(contour)
+    #elongation_value = elongation(contour) //Axed after chi tests
     roundness_value = roundness(contour)
 
     grayscale_original_image = cv2.cvtColor(original_image, cv2.COLOR_BGR2GRAY)
-    border_sharpness_value = border_sharpness(grayscale_original_image, contour)
+    #border_sharpness_value = border_sharpness(grayscale_original_image, contour) //Axed after chi tests
 
-    return symmetry_score, mean_blue, mean_green, mean_red, std_dev_blue, std_dev_green, std_dev_red, compactness_value, elongation_value, roundness_value, border_sharpness_value
+    return mean_green, mean_red, std_dev_green, std_dev_red, compactness_value, roundness_value
 
 def find_contours(grayscale_image):
     _, thresholded = cv2.threshold(grayscale_image, 1, 255, cv2.THRESH_BINARY)
