@@ -1,0 +1,402 @@
+---
+title: "Things_from_metadata"
+output: html_document
+date: "2023-05-12"
+---
+
+##MEL data
+
+```{r}
+MEL<-subset(metadata,diagnostic == "MEL")
+MEL_bleed<-as.integer(as.logical(MEL$bleed))
+MEL_itch<-as.integer(as.logical(MEL$itch))
+MEL_itch<-na.omit(MEL_itch)
+MEL_hurt<--as.integer(as.logical(MEL$hurt))
+MEL_hurt<-na.omit(MEL_hurt)
+MEL_grew<-as.integer(as.logical(MEL$grew))
+MEL_grew<-na.omit(MEL_grew)
+MEL_changed<-as.integer(as.logical(MEL$changed))
+MEL_changed<-na.omit(MEL_changed)
+MEL_age<-MEL$age
+```
+
+
+##SEK
+
+```{r}
+SEK<-subset(metadata,diagnostic == "SEK")
+
+SEK_bleed<-as.integer(as.logical(SEK$bleed))
+SEK_itch<-as.integer(as.logical(SEK$itch))
+SEK_itch<-na.omit(SEK_itch)
+SEK_hurt<--as.integer(as.logical(SEK$hurt))
+SEK_hurt<--na.omit(SEK_hurt)
+SEK_grew<-as.integer(as.logical(SEK$grew))
+SEK_grew<-na.omit(SEK_grew)
+SEK_changed<-as.integer(as.logical(SEK$changed))
+SEK_changed<-na.omit(SEK_changed)
+SEK_age<-SEK$age
+```
+
+
+
+##BCC
+
+```{r}
+BCC<-subset(metadata,diagnostic == "BCC")
+BCC_bleed<-as.integer(as.logical(BCC$bleed))
+BCC_itch<-as.integer(as.logical(BCC$itch))
+BCC_itch<-na.omit(BCC_itch)
+BCC_hurt<--as.integer(as.logical(BCC$hurt))
+BCC_hurt<--na.omit(BCC_hurt)
+BCC_bleed<-(na.omit(BCC_bleed))
+BCC_grew<-as.integer(as.logical(BCC$grew))
+BCC_grew<-na.omit(BCC_grew)
+BCC_changed<-as.integer(as.logical(BCC$changed))
+BCC_changed<-na.omit(BCC_changed)
+BCC_age<-BCC$age
+print(BCC_age)
+```
+
+
+
+##NEV
+
+```{r}
+NEV<-subset(metadata,diagnostic == "NEV")
+NEV_bleed<-as.integer(as.logical(NEV$bleed))
+NEV_itch<-as.integer(as.logical(NEV$itch))
+NEV_itch<-na.omit(NEV_itch)
+NEV_hurt<--as.integer(as.logical(NEV$hurt))
+NEV_hurt<--na.omit(NEV_hurt)
+NEV_bleed<-na.omit(NEV_bleed)
+NEV_age<-NEV$age
+NEV_grew<-as.integer(as.logical(NEV$grew))
+NEV_grew<-na.omit(NEV_grew)
+NEV_changed<-as.integer(as.logical(NEV$changed))
+NEV_changed<-na.omit(NEV_changed)
+NEV_age<-NEV$age
+print(NEV_age)
+```
+
+
+##SCC
+
+```{r}
+SCC<-subset(metadata,diagnostic == "SCC")
+SCC_bleed<-as.integer(as.logical(SCC$bleed))
+SCC_itch<-as.integer(as.logical(SCC$itch))
+SCC_itch<-na.omit(SCC_itch)
+SCC_hurt<--as.integer(as.logical(SCC$hurt))
+SCC_hurt<--na.omit(SCC_hurt)
+SCC_bleed<-na.omit(SCC_bleed)
+SCC_grew<-as.integer(as.logical(SCC$grew))
+SCC_grew<-na.omit(SCC_grew)
+SCC_changed<-as.integer(as.logical(SCC$changed))
+SCC_changed<-na.omit(SCC_changed)
+SCC_age<-SCC$age
+```
+
+
+
+##ACK
+
+
+```{r}
+ACK<-subset(metadata,diagnostic == "ACK")
+ACK_bleed<-as.integer(as.logical(ACK$bleed))
+ACK_itch<-as.integer(as.logical(ACK$itch))
+ACK_itch<-na.omit(ACK_itch)
+ACK_hurt<--as.integer(as.logical(ACK$hurt))
+ACK_hurt<--na.omit(ACK_hurt)
+ACK_bleed<-na.omit(ACK_bleed)
+ACK_grew<-as.integer(as.logical(ACK$grew))
+ACK_grew<-na.omit(ACK_grew)
+ACK_changed<-as.integer(as.logical(ACK$changed))
+ACK_changed<-na.omit(ACK_changed)
+ACK_age<-ACK$age
+```
+
+
+#BLEED
+```{r}
+prop.test(x=c(sum(MEL_bleed),sum(SEK_bleed)), n=c(length(MEL_bleed),length(SEK_bleed)), correct = F)
+prop.test(x=c(sum(MEL_bleed),sum(BCC_bleed)), n=c(length(MEL_bleed),length(BCC_bleed)), correct = F)
+prop.test(x=c(sum(MEL_bleed),sum(NEV_bleed)), n=c(length(MEL_bleed),length(NEV_bleed)), correct = F)
+
+
+prop.test(x=c(sum(SEK_bleed),sum(BCC_bleed)), n=c(length(SEK_bleed),length(BCC_bleed)), correct = F)
+prop.test(x=c(sum(SEK_bleed),sum(NEV_bleed)), n=c(length(SEK_bleed),length(NEV_bleed)), correct = F)
+
+
+
+prop.test(x=c(sum(NEV_bleed),sum(BCC_bleed)), n=c(length(NEV_bleed),length(BCC_bleed)), correct = F)
+```
+
+
+
+```{r}
+prop.test(x=c(sum(BCC_bleed),sum(SCC_bleed)), n=c(length(BCC_bleed),length(SCC_bleed)), correct = F)
+prop.test(x=c(sum(BCC_bleed),sum(ACK_bleed)), n=c(length(BCC_bleed),length(ACK_bleed)), correct = F)
+prop.test(x=c(sum(BCC_bleed),sum(NEV_bleed)), n=c(length(BCC_bleed),length(NEV_bleed)), correct = F)
+```
+
+
+```{r}
+prop.test(x=c(sum(MEL_bleed),sum(SCC_bleed)), n=c(length(MEL_bleed),length(SCC_bleed)), correct = F)
+prop.test(x=c(sum(SCC_bleed),sum(NEV_bleed)), n=c(length(SCC_bleed),length(NEV_bleed)), correct = F)
+prop.test(x=c(sum(SEK_bleed),sum(SCC_bleed)), n=c(length(SEK_bleed),length(SCC_bleed)), correct = F)
+
+prop.test(x=c(sum(ACK_bleed),sum(SCC_bleed)), n=c(length(ACK_bleed),length(SCC_bleed)), correct = F)
+```
+
+```{r}
+prop.test(x=c(sum(MEL_bleed),sum(ACK_bleed)), n=c(length(MEL_bleed),length(ACK_bleed)), correct = F)
+prop.test(x=c(sum(MEL_bleed),sum(NEV_bleed)), n=c(length(MEL_bleed),length(NEV_bleed)), correct = F)
+prop.test(x=c(sum(SEK_bleed),sum(MEL_bleed)), n=c(length(SEK_bleed),length(MEL_bleed)), correct = F)
+
+```
+
+
+```{r}
+prop.test(x=c(sum(NEV_bleed),sum(ACK_bleed)), n=c(length(NEV_bleed),length(ACK_bleed)), correct = F)
+prop.test(x=c(sum(ACK_bleed),sum(SEK_bleed)), n=c(length(ACK_bleed),length(SEK_bleed)), correct = F)
+
+```
+
+```{r}
+prop.test(x=c(sum(NEV_bleed),sum(SEK_bleed)), n=c(length(NEV_bleed),length(SEK_bleed)), correct = F)
+```
+
+
+
+
+###ITCH
+
+```{r}
+prop.test(x=c(sum(MEL_itch),sum(SEK_itch)), n=c(length(MEL_itch),length(SEK_itch)), correct = F)
+prop.test(x=c(sum(MEL_itch),sum(BCC_itch)), n=c(length(MEL_itch),length(BCC_itch)), correct = F)
+prop.test(x=c(sum(MEL_itch),sum(NEV_itch)), n=c(length(MEL_itch),length(NEV_itch)), correct = F)
+
+
+prop.test(x=c(sum(SEK_itch),sum(BCC_itch)), n=c(length(SEK_itch),length(BCC_itch)), correct = F)
+prop.test(x=c(sum(SEK_itch),sum(NEV_itch)), n=c(length(SEK_itch),length(NEV_itch)), correct = F)
+
+
+
+prop.test(x=c(sum(NEV_itch),sum(BCC_itch)), n=c(length(NEV_itch),length(BCC_itch)), correct = F)
+```
+
+```{r}
+prop.test(x=c(sum(BCC_itch),sum(SCC_itch)), n=c(length(BCC_itch),length(SCC_itch)), correct = F)
+prop.test(x=c(sum(BCC_itch),sum(ACK_itch)), n=c(length(BCC_itch),length(ACK_itch)), correct = F)
+prop.test(x=c(sum(BCC_itch),sum(NEV_itch)), n=c(length(BCC_itch),length(NEV_itch)), correct = F)
+```
+
+
+
+
+
+```{r}
+prop.test(x=c(sum(MEL_itch),sum(SCC_itch)), n=c(length(MEL_itch),length(SCC_itch)), correct = F)
+prop.test(x=c(sum(SCC_itch),sum(NEV_itch)), n=c(length(SCC_itch),length(NEV_itch)), correct = F)
+prop.test(x=c(sum(SEK_itch),sum(SCC_itch)), n=c(length(SEK_itch),length(SCC_itch)), correct = F)
+
+prop.test(x=c(sum(ACK_itch),sum(SCC_itch)), n=c(length(ACK_bleed),length(SCC_bleed)), correct = F)
+```
+
+```{r}
+prop.test(x=c(sum(MEL_itch),sum(ACK_itch)), n=c(length(MEL_itch),length(ACK_itch)), correct = F)
+prop.test(x=c(sum(MEL_itch),sum(NEV_itch)), n=c(length(MEL_itch),length(NEV_itch)), correct = F)
+prop.test(x=c(sum(SEK_itch),sum(MEL_itch)), n=c(length(SEK_itch),length(MEL_itch)), correct = F)
+
+```
+
+
+
+```{r}
+prop.test(x=c(sum(NEV_itch),sum(ACK_itch)), n=c(length(NEV_itch),length(ACK_itch)), correct = F)
+prop.test(x=c(sum(ACK_itch),sum(SEK_itch)), n=c(length(ACK_itch),length(SEK_itch)), correct = F)
+```
+
+
+```{r}
+prop.test(x=c(sum(NEV_itch),sum(SEK_itch)), n=c(length(NEV_itch),length(SEK_itch)), correct = F)
+```
+
+
+
+##GREW
+
+```{r}
+prop.test(x=c(sum(MEL_grew),sum(SEK_grew)), n=c(length(MEL_grew),length(SEK_grew)), correct = F)
+prop.test(x=c(sum(MEL_grew),sum(BCC_grew)), n=c(length(MEL_grew),length(BCC_grew)), correct = F)
+prop.test(x=c(sum(MEL_grew),sum(NEV_grew)), n=c(length(MEL_grew),length(NEV_grew)), correct = F)
+
+
+prop.test(x=c(sum(SEK_grew),sum(BCC_grew)), n=c(length(SEK_grew),length(BCC_grew)), correct = F)
+prop.test(x=c(sum(SEK_grew),sum(NEV_grew)), n=c(length(SEK_grew),length(NEV_grew)), correct = F)
+
+
+
+prop.test(x=c(sum(NEV_grew),sum(BCC_grew)), n=c(length(NEV_grew),length(BCC_grew)), correct = F)
+```
+
+
+
+
+```{r}
+prop.test(x=c(sum(BCC_grew),sum(SCC_grew)), n=c(length(BCC_grew),length(SCC_grew)), correct = F)
+prop.test(x=c(sum(BCC_grew),sum(ACK_grew)), n=c(length(BCC_grew),length(ACK_grew)), correct = F)
+prop.test(x=c(sum(BCC_grew),sum(NEV_grew)), n=c(length(BCC_grew),length(NEV_grew)), correct = F)
+```
+
+```{r}
+prop.test(x=c(sum(MEL_grew),sum(SCC_grew)), n=c(length(MEL_grew),length(SCC_grew)), correct = F)
+prop.test(x=c(sum(SCC_grew),sum(NEV_grew)), n=c(length(SCC_grew),length(NEV_grew)), correct = F)
+prop.test(x=c(sum(SEK_grew),sum(SCC_grew)), n=c(length(SEK_grew),length(SCC_grew)), correct = F)
+
+prop.test(x=c(sum(ACK_grew),sum(SCC_grew)), n=c(length(ACK_grew),length(SCC_grew)), correct = F)
+
+
+```
+
+
+```{r}
+prop.test(x=c(sum(MEL_grew),sum(ACK_grew)), n=c(length(MEL_grew),length(ACK_grew)), correct = F)
+prop.test(x=c(sum(MEL_grew),sum(NEV_grew)), n=c(length(MEL_grew),length(NEV_grew)), correct = F)
+prop.test(x=c(sum(SEK_grew),sum(MEL_grew)), n=c(length(SEK_grew),length(MEL_grew)), correct = F)
+
+```
+
+
+```{r}
+prop.test(x=c(sum(NEV_grew),sum(ACK_grew)), n=c(length(NEV_grew),length(ACK_grew)), correct = F)
+prop.test(x=c(sum(ACK_grew),sum(SEK_grew)), n=c(length(ACK_grew),length(SEK_grew)), correct = F)
+```
+
+```{r}
+prop.test(x=c(sum(NEV_grew),sum(SEK_grew)), n=c(length(NEV_grew),length(SEK_grew)), correct = F)
+```
+
+
+##Hurt
+
+
+
+```{r}
+prop.test(x=c(sum(MEL_hurt),sum(SEK_hurt)), n=c(length(MEL_hurt),length(SEK_hurt)), correct = F)
+prop.test(x=c(sum(MEL_hurt),sum(BCC_hurt)), n=c(length(MEL_hurt),length(BCC_hurt)), correct = F)
+prop.test(x=c(sum(MEL_hurt),sum(NEV_hurt)), n=c(length(MEL_hurt),length(NEV_hurt)), correct = F)
+
+
+prop.test(x=c(sum(SEK_hurt),sum(BCC_hurt)), n=c(length(SEK_hurt),length(BCC_hurt)), correct = F)
+prop.test(x=c(sum(SEK_hurt),sum(NEV_hurt)), n=c(length(SEK_hurt),length(NEV_hurt)), correct = F)
+
+
+
+prop.test(x=c(sum(NEV_hurt),sum(BCC_hurt)), n=c(length(NEV_hurt),length(BCC_hurt)), correct = F)
+```
+
+
+```{r}
+prop.test(x=c(sum(BCC_hurt),sum(SCC_hurt)), n=c(length(BCC_hurt),length(SCC_hurt)), correct = F)
+prop.test(x=c(sum(BCC_hurt),sum(ACK_hurt)), n=c(length(BCC_hurt),length(ACK_grew)), correct = F)
+prop.test(x=c(sum(BCC_hurt),sum(NEV_hurt)), n=c(length(BCC_grew),length(NEV_grew)), correct = F)
+```
+
+
+```{r}
+prop.test(x=c(sum(MEL_hurt),sum(SCC_hurt)), n=c(length(MEL_hurt),length(SCC_hurt)), correct = F)
+prop.test(x=c(sum(SCC_hurt),sum(NEV_hurt)), n=c(length(SCC_hurt),length(NEV_hurt)), correct = F)
+prop.test(x=c(sum(SEK_hurt),sum(SCC_hurt)), n=c(length(SEK_hurt),length(SCC_hurt)), correct = F)
+
+prop.test(x=c(sum(ACK_hurt),sum(SCC_hurt)), n=c(length(ACK_hurt),length(SCC_hurt)), correct = F)
+
+
+```
+
+
+
+```{r}
+prop.test(x=c(sum(MEL_hurt),sum(ACK_hurt)), n=c(length(MEL_hurt),length(ACK_hurt)), correct = F)
+prop.test(x=c(sum(MEL_hurt),sum(NEV_hurt)), n=c(length(MEL_hurt),length(NEV_hurt)), correct = F)
+prop.test(x=c(sum(SEK_hurt),sum(MEL_hurt)), n=c(length(SEK_hurt),length(MEL_hurt)), correct = F)
+
+```
+
+
+
+
+
+```{r}
+prop.test(x=c(sum(NEV_hurt),sum(ACK_hurt)), n=c(length(NEV_hurt),length(ACK_hurt)), correct = F)
+prop.test(x=c(sum(ACK_hurt),sum(SEK_hurt)), n=c(length(ACK_hurt),length(SEK_hurt)), correct = F)
+```
+
+```{r}
+prop.test(x=c(sum(NEV_hurt),sum(SEK_hurt)), n=c(length(NEV_hurt),length(SEK_hurt)), correct = F)
+```
+
+##CHANGED
+
+```{r}
+prop.test(x=c(sum(MEL_changed),sum(SEK_changed)), n=c(length(MEL_changed),length(SEK_changed)), correct = F)
+prop.test(x=c(sum(MEL_changed),sum(BCC_changed)), n=c(length(MEL_changed),length(BCC_bleed)), correct = F)
+prop.test(x=c(sum(MEL_changed),sum(NEV_changed)), n=c(length(MEL_changed),length(NEV_changed)), correct = F)
+
+
+prop.test(x=c(sum(SEK_changed),sum(BCC_changed)), n=c(length(SEK_changed),length(BCC_changed)), correct = F)
+prop.test(x=c(sum(SEK_changed),sum(NEV_changed)), n=c(length(SEK_changed),length(NEV_changed)), correct = F)
+
+
+
+prop.test(x=c(sum(NEV_changed),sum(BCC_changed)), n=c(length(NEV_changed),length(BCC_changed)), correct = F)
+```
+
+
+```{r}
+prop.test(x=c(sum(BCC_changed),sum(SCC_changed)), n=c(length(BCC_changed),length(SCC_changed)), correct = F)
+prop.test(x=c(sum(BCC_changed),sum(ACK_changed)), n=c(length(BCC_changed),length(ACK_changed)), correct = F)
+prop.test(x=c(sum(BCC_changed),sum(NEV_changed)), n=c(length(BCC_changed),length(NEV_changed)), correct = F)
+```
+
+```{r}
+prop.test(x=c(sum(MEL_changed),sum(SCC_changed)), n=c(length(MEL_changed),length(SCC_changed)), correct = F)
+prop.test(x=c(sum(SCC_changed),sum(NEV_changed)), n=c(length(SCC_changed),length(NEV_changed)), correct = F)
+prop.test(x=c(sum(SEK_changed),sum(SCC_changed)), n=c(length(SEK_changed),length(SCC_changed)), correct = F)
+
+prop.test(x=c(sum(ACK_changed),sum(SCC_changed)), n=c(length(ACK_changed),length(SCC_changed)), correct = F)
+
+
+```
+
+```{r}
+prop.test(x=c(sum(MEL_changed),sum(ACK_changed)), n=c(length(MEL_changed),length(ACK_changed)), correct = F)
+prop.test(x=c(sum(MEL_changed),sum(NEV_changed)), n=c(length(MEL_changed),length(NEV_changed)), correct = F)
+prop.test(x=c(sum(SEK_changed),sum(MEL_changed)), n=c(length(SEK_changed),length(MEL_changed)), correct = F)
+
+```
+
+```{r}
+prop.test(x=c(sum(NEV_changed),sum(ACK_changed)), n=c(length(NEV_changed),length(ACK_changed)), correct = F)
+prop.test(x=c(sum(ACK_changed),sum(SEK_changed)), n=c(length(ACK_changed),length(SEK_changed)), correct = F)
+```
+
+```{r}
+prop.test(x=c(sum(NEV_changed),sum(SEK_changed)), n=c(length(NEV_changed),length(SEK_changed)), correct = F)
+```
+
+
+
+##AGE
+```{r}
+t.test(BCC_age,SCC_age)
+t.test(BCC_age,MEL_age)
+t.test(BCC_age,ACK_age)
+t.test(BCC_age,NEV_age)
+t.test(BCC_age,SEK_age)
+```
+
+
+
